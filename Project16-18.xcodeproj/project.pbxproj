@@ -15,6 +15,16 @@
 		926F69F0288F74E0009D6C9C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926F69EE288F74E0009D6C9C /* Main.storyboard */; };
 		926F69F2288F74E1009D6C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926F69F1288F74E1009D6C9C /* Assets.xcassets */; };
 		926F69F5288F74E1009D6C9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926F69F3288F74E1009D6C9C /* LaunchScreen.storyboard */; };
+		926F6A3C288FD527009D6C9C /* backgroundWall.png in Resources */ = {isa = PBXBuildFile; fileRef = 926F6A35288FD527009D6C9C /* backgroundWall.png */; };
+		926F6A3D288FD527009D6C9C /* badTarget.png in Resources */ = {isa = PBXBuildFile; fileRef = 926F6A36288FD527009D6C9C /* badTarget.png */; };
+		926F6A3E288FD527009D6C9C /* goodTarget.png in Resources */ = {isa = PBXBuildFile; fileRef = 926F6A37288FD527009D6C9C /* goodTarget.png */; };
+		926F6A40288FD527009D6C9C /* goodTargetAlt.png in Resources */ = {isa = PBXBuildFile; fileRef = 926F6A39288FD527009D6C9C /* goodTargetAlt.png */; };
+		926F6A41288FD527009D6C9C /* shootSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 926F6A3A288FD527009D6C9C /* shootSound.wav */; };
+		926F6A42288FD527009D6C9C /* badTargetAlt.png in Resources */ = {isa = PBXBuildFile; fileRef = 926F6A3B288FD527009D6C9C /* badTargetAlt.png */; };
+		926F6A44288FD568009D6C9C /* barbedWire.png in Resources */ = {isa = PBXBuildFile; fileRef = 926F6A43288FD568009D6C9C /* barbedWire.png */; };
+		9293E6342890C82800DF2BE4 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 9293E6332890C82800DF2BE4 /* bullet.png */; };
+		9293E63B2890E41400DF2BE4 /* reload.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9293E6392890E41300DF2BE4 /* reload.wav */; };
+		9293E63C2890E41400DF2BE4 /* emptyClip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9293E63A2890E41400DF2BE4 /* emptyClip.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +37,16 @@
 		926F69EF288F74E0009D6C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		926F69F1288F74E1009D6C9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		926F69F4288F74E1009D6C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		926F6A35288FD527009D6C9C /* backgroundWall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundWall.png; sourceTree = "<group>"; };
+		926F6A36288FD527009D6C9C /* badTarget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badTarget.png; sourceTree = "<group>"; };
+		926F6A37288FD527009D6C9C /* goodTarget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodTarget.png; sourceTree = "<group>"; };
+		926F6A39288FD527009D6C9C /* goodTargetAlt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goodTargetAlt.png; sourceTree = "<group>"; };
+		926F6A3A288FD527009D6C9C /* shootSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shootSound.wav; sourceTree = "<group>"; };
+		926F6A3B288FD527009D6C9C /* badTargetAlt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badTargetAlt.png; sourceTree = "<group>"; };
+		926F6A43288FD568009D6C9C /* barbedWire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barbedWire.png; sourceTree = "<group>"; };
+		9293E6332890C82800DF2BE4 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
+		9293E6392890E41300DF2BE4 /* reload.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = reload.wav; sourceTree = "<group>"; };
+		9293E63A2890E41400DF2BE4 /* emptyClip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = emptyClip.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +87,26 @@
 				926F69EE288F74E0009D6C9C /* Main.storyboard */,
 				926F69F1288F74E1009D6C9C /* Assets.xcassets */,
 				926F69F3288F74E1009D6C9C /* LaunchScreen.storyboard */,
+				926F6A34288FD527009D6C9C /* Content */,
 			);
 			path = "Project16-18";
+			sourceTree = "<group>";
+		};
+		926F6A34288FD527009D6C9C /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				9293E6332890C82800DF2BE4 /* bullet.png */,
+				926F6A35288FD527009D6C9C /* backgroundWall.png */,
+				926F6A36288FD527009D6C9C /* badTarget.png */,
+				926F6A37288FD527009D6C9C /* goodTarget.png */,
+				926F6A39288FD527009D6C9C /* goodTargetAlt.png */,
+				926F6A3A288FD527009D6C9C /* shootSound.wav */,
+				926F6A3B288FD527009D6C9C /* badTargetAlt.png */,
+				926F6A43288FD568009D6C9C /* barbedWire.png */,
+				9293E63A2890E41400DF2BE4 /* emptyClip.wav */,
+				9293E6392890E41300DF2BE4 /* reload.wav */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,9 +168,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				926F69F0288F74E0009D6C9C /* Main.storyboard in Resources */,
+				926F6A3E288FD527009D6C9C /* goodTarget.png in Resources */,
+				926F6A41288FD527009D6C9C /* shootSound.wav in Resources */,
+				9293E63B2890E41400DF2BE4 /* reload.wav in Resources */,
+				926F6A3C288FD527009D6C9C /* backgroundWall.png in Resources */,
 				926F69E7288F74E0009D6C9C /* GameScene.sks in Resources */,
+				9293E6342890C82800DF2BE4 /* bullet.png in Resources */,
 				926F69F2288F74E1009D6C9C /* Assets.xcassets in Resources */,
 				926F69F5288F74E1009D6C9C /* LaunchScreen.storyboard in Resources */,
+				9293E63C2890E41400DF2BE4 /* emptyClip.wav in Resources */,
+				926F6A40288FD527009D6C9C /* goodTargetAlt.png in Resources */,
+				926F6A44288FD568009D6C9C /* barbedWire.png in Resources */,
+				926F6A3D288FD527009D6C9C /* badTarget.png in Resources */,
+				926F6A42288FD527009D6C9C /* badTargetAlt.png in Resources */,
 				926F69E9288F74E0009D6C9C /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +347,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -310,7 +359,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -327,6 +376,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -338,7 +388,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
