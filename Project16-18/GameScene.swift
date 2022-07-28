@@ -76,7 +76,7 @@ class GameScene: SKScene {
         
 //       Adding targets to screen
 
-        gameTimer = Timer.scheduledTimer(timeInterval: Double.random(in: 1...1.2), target: self, selector: #selector(createTarget), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: Double.random(in: 0.6...0.9), target: self, selector: #selector(createTarget), userInfo: nil, repeats: true)
         
         bulletNode = SKSpriteNode(imageNamed: "bullet")
         bulletNode.size = CGSize(width: 15, height: 40)
@@ -110,7 +110,7 @@ class GameScene: SKScene {
         countdownLabel.zPosition = 1
         addChild(countdownLabel)
         
-        countdownCount = 59
+        countdownCount = 30
         
         countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
