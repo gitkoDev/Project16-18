@@ -23,15 +23,25 @@ class GameScene: SKScene {
         }
     }
     
+    var countdownCount: Int! {
+        didSet {
+            countdownLabel.text = "\(countdownCount!)"
+        }
+    }
+    var countdownTimer: Timer!
+    var countdownLabel: SKLabelNode!
+    
     var reloadLabel: SKLabelNode!
     
     var targetNode: SKSpriteNode!
     
     var gameTimer: Timer!
     
+
+    
     var barbedWireYPositions = [Int]()
     
-    let allTargets = ["goodTarget", "goodTargetAlt", "badTarget", "badTargetAlt"]
+    let allTargets = ["goodTarget", "goodTarget2", "goodTarget3", "goodTarget4", "badTarget"]
 
     
     override func didMove(to view: SKView) {
@@ -45,7 +55,7 @@ class GameScene: SKScene {
         scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         scoreLabel.text = "Score: 0"
         scoreLabel.fontSize = 24
-        scoreLabel.position = CGPoint(x: 30, y: frame.size.height - 80)
+        scoreLabel.position = CGPoint(x: 150, y: frame.size.height - 80)
         scoreLabel.horizontalAlignmentMode = .left
         scoreLabel.zPosition = 1
         addChild(scoreLabel)
@@ -89,6 +99,19 @@ class GameScene: SKScene {
         reloadLabel.isHidden = true
         addChild(reloadLabel)
         
+        
+        countdownLabel = SKLabelNode(fontNamed: "Chalkduster")
+        countdownLabel.text = "Score: 0"
+        countdownLabel.fontSize = 24
+        countdownLabel.position = CGPoint(x: 30, y: frame.size.height - 80)
+        countdownLabel.horizontalAlignmentMode = .left
+        countdownLabel.zPosition = 1
+        addChild(countdownLabel)
+        
+        countdownCount = 10
+        
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        
     }
     
     
@@ -98,28 +121,33 @@ class GameScene: SKScene {
         let tappedNodes = nodes(at: location)
         
         for node in tappedNodes {
-
-            if node.name == "good" || node.name == "bad" {
-                if bulletsCount == 0 {
-                    self.run(SKAction.playSoundFileNamed("emptyClip", waitForCompletion: false))
-                } else {
-                    node.removeFromParent()
-                    self.run(SKAction.playSoundFileNamed("shootSound.wav", waitForCompletion: false))
-                    bulletsCount -= 1
+            if let nodeName = node.name {
+                
+                if nodeName.contains("good") || nodeName.contains("bad") {
+                    if bulletsCount == 0 {
+                        self.run(SKAction.playSoundFileNamed("emptyClip", waitForCompletion: false))
+                    } else {
+                        switch nodeName {
+                       case "good": score += 1
+                       case "good2": score += 2
+                       case "good3": score += 3
+                       case "good4": score += 4
+                       case "bad": score -= 5
+                       default: return
+                        }
+                        bulletsCount -= 1
+                        self.run(SKAction.playSoundFileNamed("shootSound", waitForCompletion: false))
+                        node.removeFromParent()
+                    }
                 }
- 
+                if nodeName == "reload" {
+                    self.run(SKAction.playSoundFileNamed("reload", waitForCompletion: false))
+                    bulletsCount = 6
+                    reloadLabel.isHidden = true
+                }
             }
-            else if node.name == "good" {
-                print("good tapped")
-            } else if node.name == "bad" {
-                print("bad tapped")
-            } else if node.name == "reload" {
-                bulletsCount = 6
-                reloadLabel.isHidden = true
-                self.run(SKAction.playSoundFileNamed("reload.wav", waitForCompletion: false))
-            }
+
         }
- 
         
     }
     
@@ -129,15 +157,27 @@ class GameScene: SKScene {
             guard let targetName = allTargets.randomElement() else { return }
             
             targetNode = SKSpriteNode(imageNamed: targetName)
-            if targetName == "goodTarget" || targetName == "goodTargetAlt" {
-                targetNode.name = "good"
-            } else {
-                targetNode.name = "bad"
+            switch targetName {
+            case "goodTarget": targetNode.name = "good"
+            case "goodTarget2": targetNode.name = "good2"
+            case "goodTarget3": targetNode.name = "good3"
+            case "goodTarget4": targetNode.name = "good4"
+            default: targetNode.name = "bad"
             }
             
             targetNode.zPosition = 5
             
-            let size = CGFloat.random(in: 30...100)
+//            let size = CGFloat.random(in: 30...100)
+            
+            let size: CGFloat
+            switch targetNode.name {
+            case "good": size = 100
+            case "good2": size = 80
+            case "good3": size = 50
+            case "good4": size = 30
+            default: size = 110
+            }
+            
             targetNode.size = CGSize(width: size, height: size)
             
             targetNode.position.y = CGFloat(line)
@@ -174,6 +214,24 @@ class GameScene: SKScene {
             reloadLabel.isHidden = false
             self.run(SKAction.playSoundFileNamed("emptyClip", waitForCompletion: false))
             print("empty")
+        }
+    }
+    
+    @objc func updateCounter() {
+        countdownCount -= 1
+        if countdownCount == 0 {
+            let ac = UIAlertController(title: "Game over", message: "Your final score is \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            view?.window?.rootViewController?.present(ac, animated: true)
+            
+            countdownTimer.invalidate()
+            gameTimer.invalidate()
+            
+            for node in self.children {
+                if node.name == "good" || node.name == "bad" {
+                    node.removeFromParent()
+                }
+            }
         }
     }
     
