@@ -8,10 +8,12 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let defaults = UserDefaults.standard
+    
     var scoreLabel: SKLabelNode!
     var score = 0 {
         didSet {
-            scoreLabel.text = String(score)
+            scoreLabel.text = "Score: \(score)"
         }
     }
     
@@ -54,8 +56,8 @@ class GameScene: SKScene {
         
         scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         scoreLabel.text = "Score: 0"
-        scoreLabel.fontSize = 24
-        scoreLabel.position = CGPoint(x: 150, y: frame.size.height - 80)
+        scoreLabel.fontSize = 20
+        scoreLabel.position = CGPoint(x: 40, y: frame.size.height - 60)
         scoreLabel.horizontalAlignmentMode = .left
         scoreLabel.zPosition = 1
         addChild(scoreLabel)
@@ -102,13 +104,13 @@ class GameScene: SKScene {
         
         countdownLabel = SKLabelNode(fontNamed: "Chalkduster")
         countdownLabel.text = "Score: 0"
-        countdownLabel.fontSize = 24
-        countdownLabel.position = CGPoint(x: 30, y: frame.size.height - 80)
+        countdownLabel.fontSize = 30
+        countdownLabel.position = CGPoint(x: CGFloat(frame.size.width / 2 - 30), y: frame.size.height - 80)
         countdownLabel.horizontalAlignmentMode = .left
         countdownLabel.zPosition = 1
         addChild(countdownLabel)
         
-        countdownCount = 10
+        countdownCount = 59
         
         countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
@@ -137,7 +139,7 @@ class GameScene: SKScene {
                         }
                         bulletsCount -= 1
                         self.run(SKAction.playSoundFileNamed("shootSound", waitForCompletion: false))
-                        node.removeFromParent()
+                        node.run(SKAction.fadeOut(withDuration: 0.5))
                     }
                 }
                 if nodeName == "reload" {
@@ -167,12 +169,12 @@ class GameScene: SKScene {
             
             targetNode.zPosition = 5
             
-//            let size = CGFloat.random(in: 30...100)
-            
+
+// Targets have different size depending on their color, e.g. smaller targets give better score
             let size: CGFloat
             switch targetNode.name {
-            case "good": size = 100
-            case "good2": size = 80
+            case "good": size = 90
+            case "good2": size = 70
             case "good3": size = 50
             case "good4": size = 30
             default: size = 110
@@ -213,16 +215,12 @@ class GameScene: SKScene {
         if bulletsCount == 0 {
             reloadLabel.isHidden = false
             self.run(SKAction.playSoundFileNamed("emptyClip", waitForCompletion: false))
-            print("empty")
         }
     }
     
     @objc func updateCounter() {
         countdownCount -= 1
         if countdownCount == 0 {
-            let ac = UIAlertController(title: "Game over", message: "Your final score is \(score)", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Dismiss", style: .default))
-            view?.window?.rootViewController?.present(ac, animated: true)
             
             countdownTimer.invalidate()
             gameTimer.invalidate()
@@ -232,7 +230,30 @@ class GameScene: SKScene {
                     node.removeFromParent()
                 }
             }
+            
+            getFinalScore()
         }
+    }
+    
+    
+    func getFinalScore() {
+        let bestScore = defaults.object(forKey: "bestScore") as? Int ?? 0
+        let title: String
+        
+        
+        if score > bestScore {
+            defaults.set(score, forKey: "bestScore")
+            title = "New high score!"
+        } else {
+            title = "Game over"
+        }
+        
+
+        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        view?.window?.rootViewController?.present(ac, animated: true)
+
+        
     }
     
  
